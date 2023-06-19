@@ -25,7 +25,10 @@ app.use(cookieParse());
 // middleware cors
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'http://localhost:3001'],
+    origin: [
+      'https://didulichthoii.firebaseapp.com',
+      'https://didulichthoii-admin.firebaseapp.com',
+    ],
     methods: 'OPTIONS, GET, POST, PUT, PATCH, DELETE',
     allowedHeaders: 'Content-Type, Authorization',
     credentials: true, // hỗ trợ sử dụng cookie
