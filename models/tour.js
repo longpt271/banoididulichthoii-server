@@ -68,8 +68,8 @@ const tourSchema = new Schema(
       type: String,
       required: true,
     },
-    desc: {
-      type: String,
+    schedule: {
+      type: Array,
       required: true,
     },
     warn: {

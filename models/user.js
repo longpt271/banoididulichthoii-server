@@ -55,6 +55,12 @@ const userSchema = new Schema(
 
 // Hàm add, thêm bớt tour vào cart
 userSchema.methods.addToCart = function (tour, newData) {
+  if (tour.count <= 0) {
+    const error = new Error(`Tour này đã được bán hết.`);
+    error.statusCode = 403;
+    throw error;
+  }
+
   const startDate = newData.startDate;
   const adultQuantity = newData.adultQuantity;
   const childQuantity = newData.childQuantity;
@@ -84,7 +90,7 @@ userSchema.methods.addToCart = function (tour, newData) {
       const error = new Error(
         `Tour này bạn đã thêm vào giỏ hàng ${oldTotalQuantity}/${tour.count} người.`
       );
-      error.statusCode = 404;
+      error.statusCode = 403;
       throw error;
     }
 

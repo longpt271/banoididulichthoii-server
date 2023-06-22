@@ -153,11 +153,22 @@ const tourValidationRulesArr = [
     .isURL()
     .withMessage('Img4 phải là một URL hợp lệ'),
 
-  body('desc')
+  // Kiểm tra trường "schedule" là một mảng
+  body('schedule').isArray().withMessage('Schedule must be an array'),
+  // Kiểm tra trường "schedule" chứa ít nhất một phần tử
+  body('schedule').custom((value, { req }) => {
+    if (!Array.isArray(value) || value.length === 0) {
+      throw new Error('Schedule must contain at least one item');
+    }
+    return true;
+  }),
+
+  // Kiểm tra các trường bên trong mảng "schedule"
+  body('schedule.*.title').notEmpty().withMessage('Schedule title is required'),
+  body('schedule.*.desc')
     .notEmpty()
-    .withMessage('Desc không được để trống!')
-    .isLength({ max: 500 })
-    .withMessage('Name không được vượt quá 500 ký tự.'),
+    .withMessage('Schedule description is required'),
+
   body('warn')
     .notEmpty()
     .withMessage('Warn không được để trống!')

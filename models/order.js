@@ -22,6 +22,7 @@ const orderSchema = new Schema(
           adultPrice: { type: Number, required: true }, // lưu giá tại thời điểm đặt
           childPrice: { type: Number, required: true },
           babyPrice: { type: Number, required: true },
+          percentOff: { type: Number, required: false },
         },
         startDate: { type: Date, required: true },
         endDate: { type: Date, required: true },

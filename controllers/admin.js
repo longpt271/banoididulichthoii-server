@@ -507,7 +507,7 @@ exports.postNewTour = async (req, res, next) => {
       img2: req.body.img2,
       img3: req.body.img3,
       img4: req.body.img4,
-      desc: req.body.desc,
+      schedule: req.body.schedule,
       warn: req.body.warn,
     });
 
@@ -560,7 +560,7 @@ exports.updateTour = async (req, res, next) => {
     tour.img2 = req.body.img2;
     tour.img3 = req.body.img3;
     tour.img4 = req.body.img4;
-    tour.desc = req.body.desc;
+    tour.schedule = req.body.schedule;
     tour.warn = req.body.warn;
 
     await tour.save();
